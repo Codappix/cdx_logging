@@ -1,0 +1,16 @@
+{
+    "name": "codappix/cdx_logging",
+    "description": "Provides features for TYPO3 logging.",
+    "type": "typo3-cms-extension",
+    "license": "GPL-2.0+",
+    "support": {
+        "issues": "https://github.com/Codappix/cdx_logging/issues",
+        "source": "https://github.com/Codappix/cdx_logging"
+    },
+    "authors": [
+        {
+            "name": "Daniel Siepmann",
+            "email": "coding@daniel-siepmann.de"
+        }
+    ]
+}
