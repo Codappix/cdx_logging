@@ -1,0 +1,45 @@
+{
+    "name": "codappix/cdx_logging",
+    "description": "Provides features for TYPO3 logging.",
+    "type": "typo3-cms-extension",
+    "license": "GPL-2.0+",
+    "support": {
+        "issues": "https://github.com/Codappix/cdx_logging/issues",
+        "source": "https://github.com/Codappix/cdx_logging"
+    },
+    "authors": [
+        {
+            "name": "Daniel Siepmann",
+            "email": "coding@daniel-siepmann.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Codappix\\CdxLogging\\": "Classes"
+        }
+    },
+    "require": {
+        "php": ">=7.1.0",
+        "typo3/cms": "~8.7.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.2.0",
+        "typo3/testing-framework": "~1.1.0",
+        "mikey179/vfsStream": "~1.6.4"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "1.0.x-dev"
+        },
+        "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": ".Build/web"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "mkdir -p .Build/web/typo3conf/ext/",
+            "[ -L .Build/web/typo3conf/ext/cdx_logging ] || ln -snvf ../../../../. .Build/web/typo3conf/ext/cdx_logging"
+        ]
+    }
+}
