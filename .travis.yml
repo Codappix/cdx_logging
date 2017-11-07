@@ -1,0 +1,16 @@
+language: php
+
+php:
+  - 7.1
+
+matrix:
+  fast_finish: true
+
+install: make install
+
+script:
+  - make unitTests
+
+cache:
+  directories:
+    - $HOME/.composer/cache
