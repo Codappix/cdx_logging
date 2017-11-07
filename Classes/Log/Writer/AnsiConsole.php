@@ -66,8 +66,11 @@ class AnsiConsole extends Console
 
     /**
      * Appends the given message along with the additional information into the log.
+     *
+     * @param string $message
+     * @param int $severity
      */
-    protected function append(string $message, int $severity = LOG_INFO, $additionalData = null) : void
+    protected function append($message, $severity = LOG_INFO, $additionalData = null)
     {
         $severityName = strtolower(trim($this->severityLabels[$severity]));
         $output = '<' . $severityName . '>' . $message . '</' . $severityName . '>';
@@ -79,8 +82,11 @@ class AnsiConsole extends Console
 
     /**
      * Apply ansi formatting to output according to tags
+     *
+     * @param string $output
+     * @return string
      */
-    protected function formatOutput(string $output) : string
+    protected function formatOutput($output)
     {
         $tagFormats = $this->tagFormats;
         do {

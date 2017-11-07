@@ -4,7 +4,7 @@ current_dir := $(dir $(mkfile_path))
 TYPO3_WEB_DIR := $(current_dir).Build/web
 TYPO3_PATH_ROOT := $(current_dir).Build/web
 # Allow different versions on travis
-TYPO3_VERSION ?= ~8.7
+TYPO3_VERSION ?= ~6.2
 
 .PHONY: install
 install: clean
@@ -12,7 +12,8 @@ install: clean
 	git checkout composer.json
 
 unitTests:
+	TYPO3_PATH_WEB=$(TYPO3_WEB_DIR) \
 	vendor/bin/phpunit --colors --debug -v
 
 clean:
-	rm -rf .Build composer.lock
+	rm -rf .Build composer.lock vendor

@@ -68,7 +68,10 @@ class Console extends AbstractWriter
         }
     }
 
-    public function writeLog(\TYPO3\CMS\Core\Log\LogRecord $record) : Console
+    /**
+     * @return Console
+     */
+    public function writeLog(\TYPO3\CMS\Core\Log\LogRecord $record)
     {
         $this->append($record->getMessage(), $record->getLevel(), $record->getData());
 
@@ -82,7 +85,7 @@ class Console extends AbstractWriter
      * @param int $severity One of the LOG_* constants
      * @param mixed $additionalData A variable containing more information
      */
-    protected function append(string $message, int $severity = LOG_INFO, $additionalData = null) : void
+    protected function append($message, $severity = LOG_INFO, $additionalData = null)
     {
         $severityLabel = (isset($this->severityLabels[$severity])) ? $this->severityLabels[$severity] : 'UNKNOWN  ';
         $output = $severityLabel . ' ' . $message;

@@ -11,8 +11,8 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'Codappix',
     'constraints' => [
         'depends' => [
-            'typo3' => '8.7.0-8.7.999',
-            'php' => '7.1.0-7.1.999',
+            'typo3' => '6.2.0-6.2.999',
+            'php' => '5.6.0-5.6.999',
         ],
     ],
 ];

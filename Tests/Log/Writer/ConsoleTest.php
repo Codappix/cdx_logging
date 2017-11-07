@@ -44,7 +44,7 @@ class ConsoleTest extends TestCase
      * @test
      * @dataProvider possibleLogRecords
      */
-    public function writeLogOutputsLogRecordsAsExpected(int $logLevel, string $logMessage, string $expectedOutput)
+    public function writeLogOutputsLogRecordsAsExpected($logLevel, $logMessage, $expectedOutput)
     {
         $logRecord = new LogRecord(
             'Some Component, which is ignored by this logger.',
@@ -63,7 +63,7 @@ class ConsoleTest extends TestCase
         );
     }
 
-    public function possibleLogRecords() : array
+    public function possibleLogRecords()
     {
         return [
             'Debug log' => [
