@@ -45,11 +45,8 @@ class AnsiConsole extends Console
      */
     protected $tagFormats = [];
 
-    public function __construct(array $options = ['stream' => 'php://stdout'])
+    public function __construct(array $options = ['stream' => 'php://stdout', 'dataOutput' => false])
     {
-        if ($options === []) {
-            $options = ['stream' => 'php://stdout'];
-        }
         parent::__construct($options);
 
         $this->tagFormats = [
@@ -64,19 +61,18 @@ class AnsiConsole extends Console
         ];
     }
 
-    /**
-     * Appends the given message along with the additional information into the log.
-     *
-     * @param string $message
-     * @param int $severity
-     */
-    protected function append($message, $severity = LOG_INFO, $additionalData = null)
+    public function writeLog(\TYPO3\CMS\Core\Log\LogRecord $record)
     {
-        $severityName = strtolower(trim($this->severityLabels[$severity]));
-        $output = '<' . $severityName . '>' . $message . '</' . $severityName . '>';
+        $severityName = strtolower(trim($this->severityLabels[$record->getLevel()]));
+        $output = sprintf(
+            '%s: %s %s',
+            $record->getComponent(),
+            '<' . $severityName . '>' . $record->getMessage() . '</' . $severityName . '>',
+            $this->getAdditionalDataOutput($record->getData())
+        );
         $output = $this->formatOutput($output);
         if (is_resource($this->streamHandle)) {
-            fputs($this->streamHandle, $output . PHP_EOL);
+            fputs($this->streamHandle, trim($output) . PHP_EOL);
         }
     }
 

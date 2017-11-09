@@ -47,11 +47,11 @@ class ConsoleTest extends TestCase
     public function writeLogOutputsLogRecordsAsExpected($logLevel, $logMessage, $expectedOutput)
     {
         $logRecord = new LogRecord(
-            'Some Component, which is ignored by this logger.',
+            'Some Component',
             $logLevel,
             $logMessage,
             [
-                'Some data' => 'which is also ignored by this logger',
+                'Some data' => 'which is ignored by this logger',
             ]
         );
         $this->subject->writeLog($logRecord);
@@ -69,42 +69,42 @@ class ConsoleTest extends TestCase
             'Debug log' => [
                 LogLevel::DEBUG,
                 'The message to log',
-                'DEBUG     The message to log',
+                'Some Component: The message to log',
             ],
             'Info log' => [
                 LogLevel::DEBUG,
                 'The message to log',
-                'DEBUG     The message to log',
+                'Some Component: The message to log',
             ],
             'Notice log' => [
                 LogLevel::NOTICE,
                 'The message to log',
-                'NOTICE    The message to log',
+                'Some Component: The message to log',
             ],
             'Warning log' => [
                 LogLevel::WARNING,
                 'The message to log',
-                'WARNING   The message to log',
+                'Some Component: The message to log',
             ],
             'Error log' => [
                 LogLevel::ERROR,
                 'The message to log',
-                'ERROR     The message to log',
+                'Some Component: The message to log',
             ],
             'Critical log' => [
                 LogLevel::CRITICAL,
                 'The message to log',
-                'CRITICAL  The message to log',
+                'Some Component: The message to log',
             ],
             'Alert log' => [
                 LogLevel::ALERT,
                 'The message to log',
-                'ALERT     The message to log',
+                'Some Component: The message to log',
             ],
             'Emergency log' => [
                 LogLevel::EMERGENCY,
                 'The message to log',
-                'EMERGENCY The message to log',
+                'Some Component: The message to log',
             ],
         ];
     }
@@ -116,5 +116,28 @@ class ConsoleTest extends TestCase
     {
         $this->expectException(CouldNotOpenResourceException::class);
         new Console(['stream' => '']);
+    }
+
+    /**
+     * @test
+     */
+    public function additionalDataIsAddedtoOutput()
+    {
+        $this->subject = new Console(['stream' => vfsStream::url('root/output'), 'dataOutput' => true]);
+        $logRecord = new LogRecord(
+            'Some Component',
+            LogLevel::DEBUG,
+            'Message',
+            [
+                'Some data' => 'which is added by this logger',
+            ]
+        );
+        $this->subject->writeLog($logRecord);
+
+        $this->assertSame(
+            'Some Component: ' . 'Message' . '  {"Some data":"which is added by this logger"}' . PHP_EOL,
+            file_get_contents(vfsStream::url('root/output')),
+            'Console Logger did not output the expected log.'
+        );
     }
 }

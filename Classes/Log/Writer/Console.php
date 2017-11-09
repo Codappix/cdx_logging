@@ -40,13 +40,15 @@ class Console extends AbstractWriter
     protected $streamHandle;
 
     /**
+     * @var bool
+     */
+    protected $dataOutput = false;
+
+    /**
      * @throws CouldNotOpenResourceException If stream could not be opened.
      */
-    public function __construct(array $options = ['stream' => 'php://stdout'])
+    public function __construct(array $options = ['stream' => 'php://stdout', 'dataOutput' => false])
     {
-        if ($options === []) {
-            $options = ['stream' => 'php://stdout'];
-        }
         $this->severityLabels = [
             LOG_EMERG   => 'EMERGENCY',
             LOG_ALERT   => 'ALERT    ',
@@ -58,6 +60,13 @@ class Console extends AbstractWriter
             LOG_DEBUG   => 'DEBUG    ',
         ];
 
+        if (isset($options['dataOutput'])) {
+            $this->dataOutput = (bool) $options['dataOutput'];
+        }
+
+        if (!isset($options['stream'])) {
+            $options['stream'] = 'php://stdout';
+        }
         $this->streamHandle = @fopen($options['stream'], 'w');
 
         if (!is_resource($this->streamHandle)) {
@@ -68,29 +77,27 @@ class Console extends AbstractWriter
         }
     }
 
-    /**
-     * @return Console
-     */
     public function writeLog(\TYPO3\CMS\Core\Log\LogRecord $record)
     {
-        $this->append($record->getMessage(), $record->getLevel(), $record->getData());
+        $output = sprintf(
+            '%s: %s %s',
+            $record->getComponent(),
+            $record->getMessage(),
+            $this->getAdditionalDataOutput($record->getData())
+        );
+        if (is_resource($this->streamHandle)) {
+            fputs($this->streamHandle, trim($output) . PHP_EOL);
+        }
 
         return $this;
     }
 
-    /**
-     * Appends the given message along with the additional information into the log.
-     *
-     * @param string $message The message to log
-     * @param int $severity One of the LOG_* constants
-     * @param mixed $additionalData A variable containing more information
-     */
-    protected function append($message, $severity = LOG_INFO, $additionalData = null)
+    protected function getAdditionalDataOutput($additionalData = null)
     {
-        $severityLabel = (isset($this->severityLabels[$severity])) ? $this->severityLabels[$severity] : 'UNKNOWN  ';
-        $output = $severityLabel . ' ' . $message;
-        if (is_resource($this->streamHandle)) {
-            fputs($this->streamHandle, $output . PHP_EOL);
+        if ($this->dataOutput && $additionalData) {
+            return ' ' . json_encode($additionalData);
         }
+
+        return '';
     }
 }
