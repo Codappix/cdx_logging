@@ -8,7 +8,7 @@ TYPO3_VERSION ?= ~8.7
 
 .PHONY: install
 install: clean
-	COMPOSER_PROCESS_TIMEOUT=1000 composer require -vv --dev --prefer-dist --ignore-platform-reqs typo3/cms="$(TYPO3_VERSION)"
+	COMPOSER_PROCESS_TIMEOUT=1000 composer require -vv --dev --prefer-dist typo3/cms="$(TYPO3_VERSION)"
 	git checkout composer.json
 
 unitTests:
