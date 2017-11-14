@@ -34,6 +34,7 @@ Example configuration::
                         [
                             'Codappix\CdxCore\Log\Writer\AnsiConsole' => [
                                 'stream' => 'php://stderr',
+                                'dataOutput' => true,
                             ],
                         ],
                     ],
@@ -48,5 +49,8 @@ Extension ``cdx_site`` for all log levels.
 Also it configured the console to write all entries to ``stderr``, default is ``stdout``. Currently
 there is no option to define a certain severity to be displayed to ``stderr`` while others are
 displayed to ``stdout``.
+
+Also it configured the add the provided data, if any. Default is to not add data.
+Data is added in json format.
 
 As a stream is expected, this is everything that can be handled as a stream, also files, etc.
