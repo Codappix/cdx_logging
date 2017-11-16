@@ -12,7 +12,7 @@
          stopOnSkipped="false"
          stopOnRisky="false"
          syntaxCheck="false"
-         bootstrap="vendor/typo3/cms/typo3/sysext/core/Build/UnitTestsBootstrap.php"
+         bootstrap=".Build/vendor/typo3/cms/typo3/sysext/core/Build/UnitTestsBootstrap.php"
 >
     <testsuites>
         <testsuite name="Project Test Suite">

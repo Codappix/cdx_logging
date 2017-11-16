@@ -1,5 +1,10 @@
 language: php
 
+addons:
+  apt:
+    packages:
+    - parallel
+
 php:
   - 5.6
   - 7.0
@@ -11,6 +16,7 @@ matrix:
 install: make install
 
 script:
+  - make lint
   - make unitTests
 
 cache:
