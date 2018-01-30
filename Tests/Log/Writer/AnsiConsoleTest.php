@@ -125,7 +125,8 @@ class AnsiConsoleTest extends TestCase
         $this->subject->writeLog($logRecord);
 
         $this->assertSame(
-            'Some Component: ' . AnsiConsole::FG_BLUE . 'Message' . AnsiConsole::END . '  {"Some data":"which is added by this logger"}' . PHP_EOL,
+            'Some Component: ' . AnsiConsole::FG_BLUE . 'Message' . AnsiConsole::END .
+                '  {"Some data":"which is added by this logger"}' . PHP_EOL,
             file_get_contents(vfsStream::url('root/output')),
             'Console Logger did not output the expected log.'
         );

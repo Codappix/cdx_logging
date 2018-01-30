@@ -80,6 +80,7 @@ class AnsiConsole extends Console
      * Apply ansi formatting to output according to tags
      *
      * @param string $output
+     *
      * @return string
      */
     protected function formatOutput($output)

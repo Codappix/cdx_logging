@@ -20,6 +20,9 @@ namespace Codappix\CdxLogging\Log\Writer;
  * 02110-1301, USA.
  */
 
+/**
+ * Defines that a resource is not available, e.g. stdin.
+ */
 class CouldNotOpenResourceException extends \Exception
 {
 }
