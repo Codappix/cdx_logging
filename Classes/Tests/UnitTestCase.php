@@ -20,7 +20,6 @@ namespace Codappix\CdxLogging\Tests;
  * 02110-1301, USA.
  */
 
-
 use TYPO3\CMS\Core\Cache\Backend\NullBackend;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

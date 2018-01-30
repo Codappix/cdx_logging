@@ -21,7 +21,6 @@ namespace Codappix\CdxLogging\Log\Writer;
  */
 
 use TYPO3\CMS\Core\Log\Writer\AbstractWriter;
-use TYPO3\CMS\Core\Log\LogLevel;
 
 /**
  * Adapted from https://github.com/neos/flow/

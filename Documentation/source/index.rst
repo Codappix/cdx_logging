@@ -22,7 +22,7 @@ Console
 
 AnsiConsole
     Will output all log entries without buffering to `stdout`.
-    Output will not styled. Messages are displayed colored depending on their log level.
+    Output will not be styled. Messages are displayed colored depending on their log level.
 
 Example configuration::
 

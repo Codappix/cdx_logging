@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Codappix TYPO3 Core Extension documentation build configuration file, created by
+# Codappix TYPO3 Logging Extension documentation build configuration file, created by
 # sphinx-quickstart on Sun Jul  2 00:16:28 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Codappix TYPO3 Core Extension'
+project = u'Codappix TYPO3 Logging Extension'
 copyright = u'2017, Codappix'
 author = u'Codappix'
 
@@ -100,7 +100,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'CodappixTYPO3CoreExtensiondoc'
+htmlhelp_basename = 'CodappixTYPO3LoggingExtensiondoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -127,7 +127,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'CodappixTYPO3CoreExtension.tex', u'Codappix TYPO3 Core Extension Documentation',
+    (master_doc, 'CodappixTYPO3LoggingExtension.tex', u'Codappix TYPO3 Logging Extension Documentation',
      u'Codappix', 'manual'),
 ]
 
@@ -137,7 +137,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'codappixtypo3coreextension', u'Codappix TYPO3 Core Extension Documentation',
+    (master_doc, 'codappixtypo3Loggingextension', u'Codappix TYPO3 Logging Extension Documentation',
      [author], 1)
 ]
 
@@ -148,8 +148,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'CodappixTYPO3CoreExtension', u'Codappix TYPO3 Core Extension Documentation',
-     author, 'CodappixTYPO3CoreExtension', 'One line description of project.',
+    (master_doc, 'CodappixTYPO3LoggingExtension', u'Codappix TYPO3 Logging Extension Documentation',
+     author, 'CodappixTYPO3LoggingExtension', 'One line description of project.',
      'Miscellaneous'),
 ]
 
