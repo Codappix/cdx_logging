@@ -12,5 +12,39 @@
             "name": "Daniel Siepmann",
             "email": "coding@daniel-siepmann.de"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Codappix\\CdxLogging\\": "Classes"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "typo3/cms": "~8.7"
+    },
+    "require-dev": {
+        "typo3-ci/typo3cms": "^6.2",
+        "phpunit/phpunit": "~6.2.0",
+        "typo3/testing-framework": "~1.1.0",
+        "mikey179/vfsStream": "~1.6.4"
+    },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "1.0.x-dev"
+        },
+        "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": ".Build/web"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "mkdir -p .Build/web/typo3conf/ext/",
+            "[ -L .Build/web/typo3conf/ext/cdx_logging ] || ln -snvf ../../../../. .Build/web/typo3conf/ext/cdx_logging"
+        ]
+    }
 }

@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<ruleset name="pps">
+    <description>The coding standard for pps.</description>
+
+    <file>Classes/</file>
+    <file>Tests/</file>
+    <file>ext_emconf.php</file>
+
+    <!-- Set default settings -->
+    <arg value="sp"/>
+    <arg name="colors"/>
+    <arg name="encoding" value="utf-8" />
+    <arg name="extensions" value="php,php.dist,inc" />
+
+    <!-- Base rules -->
+    <rule ref="PSR2">
+        <!-- As it does not work with new array syntax. -->
+        <exclude name="Squiz.Arrays.ArrayBracketSpacing.SpaceBeforeBracket" />
+    </rule>
+
+    <!-- TYPO3 Rules -->
+    <rule ref="TYPO3CMS">
+        <!-- Whitespace instead of Tabs TYPO3 will change that later according to PSR2 -->
+        <exclude name="TYPO3SniffPool.WhiteSpace.DisallowSpaceIndent" />
+        <!-- We don't force commenting parameter, as it's obvious most of the time if you're using good variable names. -->
+        <exclude name="TYPO3SniffPool.Commenting.FunctionComment.MissingParamComment" />
+        <!-- We don't force commenting methods, as it's obvious most of the time if you're using good method names. -->
+        <exclude name="TYPO3SniffPool.Commenting.DocComment.MissingShort" />
+        <!-- We don't force commenting classes, as it's obvious most of the time if you're using good method names. -->
+        <exclude name="TYPO3SniffPool.Commenting.ClassComment.Missing" />
+        <!-- TODO: Discuss, do we want to be that an error, warning or ignore? -->
+        <exclude name="TYPO3SniffPool.Commenting.FunctionComment.Missing" />
+        <!-- As we also can have things like @see before param, this makes no sense. -->
+        <exclude name="TYPO3SniffPool.Commenting.DocComment.ParamNotFirst" />
+        <!-- Exclude some TYPO3 specific rules, which should be removed by TYPO3 in near future for following PSR2 -->
+        <exclude name="Generic.PHP.UpperCaseConstant.Found" />
+        <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
+        <!-- As it doesn't work in all cases. E.g. switch cases or foreach. -->
+        <exclude name="TYPO3SniffPool.ControlStructures.AlignedBreakStatement" />
+        <!-- As it looks like the sniff doesn't work correctly. -->
+        <exclude name="TYPO3SniffPool.ControlStructures.SwitchDeclaration" />
+        <!-- As it looks like the sniff doesn't work correctly. -->
+        <exclude name="TYPO3SniffPool.WhiteSpace.ScopeClosingBrace.BreakIdent" />
+        <!-- As we use the real GNU license, perhaps we will add an own sniff. -->
+        <exclude name="TYPO3SniffPool.Commenting.FileComment.NoCopyrightFound" />
+        <!-- As we use the real GNU license, perhaps we will add an own sniff. -->
+        <exclude name="TYPO3SniffPool.Commenting.FileComment.CommentTooLong" />
+        <!-- As we find authors using version control. -->
+        <exclude name="TYPO3SniffPool.Commenting.ClassComment.NoAuthorTag" />
+        <exclude name="TYPO3SniffPool.Commenting.NoAuthorAnnotationInFunctionDocComment.NoAuthorAnnotationFoundInClassDocComment" />
+        <!-- As we make use of PHP TypeHints. Also not all methods have a return. -->
+        <exclude name="TYPO3SniffPool.Commenting.FunctionComment.MissingReturn" />
+        <!-- Not necessary for obvious parameters, we use PHP 7.x type hints. -->
+        <exclude name="TYPO3SniffPool.Commenting.FunctionComment.MissingParamTag" />
+        <exclude name="TYPO3SniffPool.Commenting.FunctionComment.InvalidTypeHint" />
+        <!-- Rule does not work -->
+        <exclude name="TYPO3SniffPool.ControlStructures.TernaryConditionalOperator" />
+    </rule>
+    <!-- Commenting -->
+    <rule ref="TYPO3SniffPool.Commenting.FileComment">
+        <exclude-pattern>ext_emconf.php</exclude-pattern>
+    </rule>
+    <!-- Make some errors to warning, as they are context specific and have to be checked manually -->
+    <rule ref="TYPO3SniffPool.Commenting.ClassComment.Missing">
+        <type>warning</type>
+        <!-- Tests do not need a Class comment. -->
+        <exclude-pattern>**/Tests/**/*Test.php</exclude-pattern>
+        <exclude-pattern>**/Migration/**</exclude-pattern>
+    </rule>
+    <!--
+         As TYPO3 will first check style and then missing ... we have to use this
+         We don't add comments to repositories, as it's obvious what they are doing.
+    -->
+    <rule ref="TYPO3SniffPool.Commenting.ClassComment.WrongStyle">
+        <exclude-pattern>*Classes/Domain/Repository/*Repository.php</exclude-pattern>
+        <exclude-pattern>**/Migration/Model/**</exclude-pattern>
+    </rule>
+    <rule ref="TYPO3SniffPool.Commenting.DocComment.MissingShort">
+        <type>warning</type>
+    </rule>
+    <rule ref="TYPO3SniffPool.Commenting.FunctionComment.MissingReturn">
+        <type>warning</type>
+        <exclude-pattern>**/Tests/**</exclude-pattern>
+    </rule>
+    <rule ref="TYPO3SniffPool.Commenting.FunctionComment.MissingParamComment">
+        <type>warning</type>
+    </rule>
+    <!-- Don't check for PHPDoc in this files -->
+    <rule ref="TYPO3SniffPool.Files.Filename">
+        <exclude-pattern>ext_emconf.php</exclude-pattern>
+        <exclude-pattern>ext_tables.php</exclude-pattern>
+        <exclude-pattern>ext_localconf.php</exclude-pattern>
+        <exclude-pattern>Configuration/TCA/*</exclude-pattern>
+        <exclude-pattern>Configuration/Realurl.php</exclude-pattern>
+    </rule>
+    <rule ref="TYPO3SniffPool.Files.Filename.Non-ClassFileFound">
+        <exclude-pattern>**/Configuration/**</exclude-pattern>
+        <exclude-pattern>**/Tests/**/Bootstrap.php</exclude-pattern>
+        <exclude-pattern>typo3/typo3conf/AdditionalConfiguration.php</exclude-pattern>
+    </rule>
+    <!-- As we can't follow the rules, the used ActiveRecord library has different conventions. -->
+    <rule ref="TYPO3SniffPool.NamingConventions.ValidVariableName.VariableNameHasUnderscoresNotLowerCamelCased">
+        <exclude-pattern>**/Migration/Model/**</exclude-pattern>
+        <exclude-pattern>**/Migration/TherapistService.php</exclude-pattern>
+    </rule>
+    <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+        <exclude-pattern>**/Tests/**/Bootstrap.php</exclude-pattern>
+    </rule>
+</ruleset>
