@@ -11,8 +11,12 @@ install: clean
 	COMPOSER_PROCESS_TIMEOUT=1000 composer require -vv --dev --prefer-dist typo3/cms="$(TYPO3_VERSION)"
 	git checkout composer.json
 
+lint:
+	find . -name \*.php -not -path "./vendor/*" -not -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
+
 unitTests:
-	vendor/bin/phpunit --colors --debug -v
+	TYPO3_PATH_WEB=$(TYPO3_WEB_DIR) \
+		.Build/bin/phpunit --colors --debug -v
 
 clean:
 	rm -rf .Build composer.lock

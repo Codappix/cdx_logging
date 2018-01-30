@@ -1,6 +1,7 @@
 language: php
 
 php:
+  - 7.0
   - 7.1
 
 matrix:
@@ -9,6 +10,7 @@ matrix:
 install: make install
 
 script:
+  - make lint
   - make unitTests
 
 cache:
