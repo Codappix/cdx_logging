@@ -18,6 +18,11 @@
             "Codappix\\CdxLogging\\": "Classes"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Codappix\\CdxLogging\\Tests\\": "Tests"
+        }
+    },
     "require": {
         "php": ">=7.0",
         "typo3/cms": "~8.7"
@@ -26,7 +31,9 @@
         "typo3-ci/typo3cms": "^6.2",
         "phpunit/phpunit": "~6.2.0",
         "typo3/testing-framework": "~1.1.0",
-        "mikey179/vfsStream": "~1.6.4"
+        "mikey179/vfsStream": "~1.6.4",
+        "phpstan/phpstan": "~0.9.2",
+        "saschaegerer/phpstan-typo3": "~0.9.0@dev"
     },
     "config": {
         "vendor-dir": ".Build/vendor",

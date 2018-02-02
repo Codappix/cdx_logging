@@ -51,22 +51,6 @@ abstract class UnitTestCase extends CoreUnitTestCase
         ]);
     }
 
-    protected function configureMockedTranslationService()
-    {
-        $translationService = $this->getMockBuilder(TranslationService::class)->getMock();
-        $translationService->expects($this->any())
-            ->method('translateFinisherOption')
-            ->willReturnCallback(function ($formRuntime, $finisherIdentifier, $optionKey, $optionValue) {
-                return $optionValue;
-            });
-        $objectManager = $this->getMockBuilder(ObjectManager::class)->getMock();
-        $objectManager->expects($this->any())
-            ->method('get')
-            ->with(TranslationService::class)
-            ->willReturn($translationService);
-        GeneralUtility::setSingletonInstance(ObjectManager::class, $objectManager);
-    }
-
     public function tearDown()
     {
         GeneralUtility::resetSingletonInstances($this->singletonInstances);

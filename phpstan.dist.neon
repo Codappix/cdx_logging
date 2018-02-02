@@ -1,0 +1,7 @@
+includes:
+    - .Build/vendor/saschaegerer/phpstan-typo3/extension.neon
+
+parameters:
+    ignoreErrors:
+        - '#Undefined variable: \$_EXTKEY#'
+        - '#Codappix\\CdxLogging\\Log\\Writer\\Console::__construct\(\) does not call parent constructor from TYPO3\\CMS\\Core\\Log\\Writer\\AbstractWriter\.#'
