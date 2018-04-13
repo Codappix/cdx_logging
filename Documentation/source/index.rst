@@ -32,7 +32,7 @@ Example configuration::
                 'Command' => [
                     'writerConfiguration' => [
                         [
-                            'Codappix\CdxCore\Log\Writer\AnsiConsole' => [
+                            'Codappix\CdxLogging\Log\Writer\AnsiConsole' => [
                                 'stream' => 'php://stderr',
                                 'dataOutput' => true,
                             ],
