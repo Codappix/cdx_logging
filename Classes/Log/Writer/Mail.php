@@ -32,7 +32,18 @@ use TYPO3\CMS\Core\Utility\MailUtility;
  */
 class Mail extends AbstractWriter
 {
+    /**
+     * Defines the sender of the mail.
+     *
+     * @var array
+     */
     protected $from = [];
+
+    /**
+     * Defines the recipients of the mail.
+     *
+     * @var array
+     */
     protected $to = [];
 
     public function __construct(array $options = [])
@@ -59,8 +70,7 @@ class Mail extends AbstractWriter
             ->setFrom($this->from)
             ->setTo($this->to)
             ->setBody($this->getBody($record))
-            ->send()
-            ;
+            ->send();
     }
 
     protected function getSubject(LogRecord $record)

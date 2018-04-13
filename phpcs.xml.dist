@@ -7,4 +7,11 @@
     <file>ext_emconf.php</file>
 
     <rule ref="CGL-TYPO3" />
+
+    <rule ref="Generic.Files.LineLength.TooLong">
+        <exclude-pattern>Tests/Log/Writer/AnsiConsoleTest.php</exclude-pattern>
+    </rule>
+    <rule ref="TYPO3SniffPool.Files.Filename.Non-ClassFileFound">
+        <exclude-pattern>Tests/Bootstrap.php</exclude-pattern>
+    </rule>
 </ruleset>
