@@ -24,6 +24,12 @@ AnsiConsole
     Will output all log entries without buffering to `stdout`.
     Output will not be styled. Messages are displayed colored depending on their log level.
 
+Mail
+    Will send a single mail for each log record.
+    Mails are send as plain text and multiple sender can be configured.
+    Possible options are `from` and `to` accordingly to
+    https://docs.typo3.org/typo3cms/CoreApiReference/ApiOverview/Mail/Index.html#how-to-create-and-send-mails
+
 Example configuration::
 
     'LOG' => [
@@ -32,9 +38,15 @@ Example configuration::
                 'Command' => [
                     'writerConfiguration' => [
                         [
-                            'Codappix\CdxLogging\Log\Writer\AnsiConsole' => [
+                            \Codappix\CdxLogging\Log\Writer\AnsiConsole::class => [
                                 'stream' => 'php://stderr',
                                 'dataOutput' => true,
+                            ],
+                            \Codappix\CdxLogging\Log\Writer\Mail::class => [
+                                'to' => [
+                                    'address@example.com' => '1st Example Name',
+                                    'address2@example.com' => '2nd Example Name',
+                                ],
                             ],
                         ],
                     ],
