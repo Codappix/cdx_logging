@@ -1,0 +1,14 @@
+diff --git a/composer.json b/composer.json
+index 21b4851..bd9e325 100644
+--- a/composer.json
++++ b/composer.json
+@@ -23,8 +23,7 @@
+     },
+     "require-dev": {
+         "codappix/cgl-typo3": "~1.0.0",
+-        "phpunit/phpunit": "~6.2.0",
+-        "typo3/testing-framework": "~1.1.0",
++        "phpunit/phpunit": "~5.7.0",
+         "mikey179/vfsStream": "~1.6.4"
+     },
+     "config": {
