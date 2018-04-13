@@ -12,5 +12,41 @@
             "name": "Daniel Siepmann",
             "email": "coding@daniel-siepmann.de"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Codappix\\CdxLogging\\": "Classes"
+        }
+    },
+    "require": {
+        "php": ">=5.6"
+    },
+    "require-dev": {
+        "codappix/cgl-typo3": "~1.0.0",
+        "phpunit/phpunit": "~6.2.0",
+        "typo3/testing-framework": "~1.1.0",
+        "mikey179/vfsStream": "~1.6.4"
+    },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-develop": "2.0.x-dev"
+        },
+        "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": ".Build/web"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "[ -d .Build/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/CGL-PHP ] || cp -r .Build/vendor/codappix/cgl-php .Build/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/CGL-PHP",
+            "[ -d .Build/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/CGL-TYPO3 ] || cp -r .Build/vendor/codappix/cgl-typo3 .Build/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/CGL-TYPO3",
+            "[ -d .Build/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/TYPO3SniffPool ] || cp -r .Build/vendor/typo3-ci/typo3sniffpool .Build/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/TYPO3SniffPool",
+            "mkdir -p .Build/web/typo3conf/ext/",
+            "[ -L .Build/web/typo3conf/ext/cdx_logging ] || ln -snvf ../../../../. .Build/web/typo3conf/ext/cdx_logging"
+        ]
+    }
 }

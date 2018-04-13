@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ruleset name="cdx_logging">
+    <description>The coding standard for cdx_logging.</description>
+
+    <file>Classes/</file>
+    <file>Tests/</file>
+    <file>ext_emconf.php</file>
+
+    <rule ref="CGL-TYPO3" />
+
+    <rule ref="Generic.Files.LineLength.TooLong">
+        <exclude-pattern>Tests/Log/Writer/AnsiConsoleTest.php</exclude-pattern>
+    </rule>
+    <rule ref="TYPO3SniffPool.Files.Filename.Non-ClassFileFound">
+        <exclude-pattern>Tests/Bootstrap.php</exclude-pattern>
+    </rule>
+</ruleset>

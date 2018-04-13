@@ -1,0 +1,4 @@
+vendor/
+.Build/
+composer.lock
+Documentation/build/
