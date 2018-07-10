@@ -23,6 +23,7 @@ install: clean
 lint:
 	find . -name \*.php -not -path "./vendor/*" -not -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
 	.Build/bin/phpcs
+	.Build/bin/phpstan analyze -c phpstan.dist.neon --level=max Classes/ Tests/ *.php
 
 unitTests:
 	TYPO3_PATH_WEB=$(TYPO3_WEB_DIR) \
