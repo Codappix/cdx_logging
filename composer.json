@@ -2,7 +2,7 @@
     "name": "codappix/cdx_logging",
     "description": "Provides features for TYPO3 logging.",
     "type": "typo3-cms-extension",
-    "license": "GPL-2.0+",
+    "license": "GPL-2.0-or-later",
     "support": {
         "issues": "https://github.com/Codappix/cdx_logging/issues",
         "source": "https://github.com/Codappix/cdx_logging"
@@ -25,7 +25,7 @@
         "codappix/cgl-typo3": "~1.0.0",
         "phpunit/phpunit": "~6.2.0",
         "typo3/testing-framework": "~1.1.0",
-        "mikey179/vfsStream": "~1.6.4"
+        "mikey179/vfsstream": "~1.6.4"
     },
     "config": {
         "vendor-dir": ".Build/vendor",
